@@ -21,9 +21,6 @@ socketServer.on( 'connection', client => {
 
     // when the server receives a message from this client...
     client.on( 'message', msg => {
-        console.log("HELLO");
-        console.log(msg);
-        console.log('received: %s', msg);
         // send msg to every client EXCEPT the one who originally sent it
         let userID="User "+(clients.indexOf(client)+1);
         let userBuffer=Buffer.from(userID);
@@ -36,6 +33,9 @@ socketServer.on( 'connection', client => {
 
     // add client to client list
     clients.push( client )
+    let intro="You are User " + (clients.indexOf(client)+1);
+    let introBuffer=Buffer.from(intro);
+    client.send(introBuffer);
 })
 
 server.listen( 3000 )
