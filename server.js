@@ -11,7 +11,7 @@ import ViteExpress from 'vite-express'
 import { WebSocketServer } from 'ws'
 let width = 400;
 let height = 400;
-let minSize = 10;
+let minSize = 20;
 let bouncers = [
   {
     size:50,
@@ -35,10 +35,10 @@ const stepBouncers = function(){
   for(let i = 0; i < bouncers.length; i++){
     bouncers[i].x+=bouncers[i].xVel;
     bouncers[i].y+=bouncers[i].yVel;
-    if(bouncers[i].x > width || bouncers[i].x < 0){
+    if(bouncers[i].x > width - bouncers[i].size || bouncers[i].x < 0){
       bouncers[i].xVel*=-1;
     }
-    if(bouncers[i].y > height || bouncers[i].y < 0){
+    if(bouncers[i].y > height - bouncers[i].size || bouncers[i].y < 0){
       bouncers[i].yVel*=-1;
     }
   }
@@ -114,8 +114,9 @@ socketServer.on( 'connection', client => {
       bouncers.splice(index,1);
     }else if(data.type=="grow"){
       let index = data.index;
+      bouncers[index].x-=bouncers[index].size;
+      bouncers[index].y-=bouncers[index].size;
       bouncers[index].size*=2;
-      bouncers[index].x
     }
   });
 
