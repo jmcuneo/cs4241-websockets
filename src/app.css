@@ -9,4 +9,5 @@ body {
 button {
   all: unset;
   display:block;
+  position: absolute;
 }
