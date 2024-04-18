@@ -1,0 +1,16 @@
+{
+  "name": "cs4241-websockets",
+  "version": "1.0.0",
+  "description": "In this activity, you will work in groups to build a simple websockets application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "vite-express": "^0.16.0",
+    "ws": "^8.16.0"
+  }
+}
