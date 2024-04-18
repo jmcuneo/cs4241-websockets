@@ -1,17 +1,3 @@
-# ICE 04: Websockets
+Group members: Darren Ni, Parker Frizzle, Austin Rebello, Brianna Sahagian
 
-In this activity, you will work in groups to build a simple websockets application
-
-### Instructions
-
-1. Divide yourselves into groups of 3 - 5 students.
-
-2. Implement the basic websockets setup demo from the [sockets guide](https://github.com/jmcuneo/cs4241-guides/blob/master/using.sockets.md). Make sure that is up and running correctly before proceeding to the next step.
-
-3. Using the demo as a starting point, create a simple networked web application. Make sure the application can handle everybody in your group. Be creative, but manage your time and expectations wisely so that you have a complete application to submit by the end of class.
-
-4. Write up a README file that includes the names of all of your group members and a description of what the application does. Be sure to list anything a user might need to know before using your application. Also describe any challenges your group faced.
-
-5. Submit your final assignment by initiating a pull request against this repo.
-
-**NOTE:** The demo uses Svelte, but you are welcome to switch to a different UI framework if you prefer.
+We expanded on the original demo by adding a number guessing game to the text chat. If a user connected to the chat inputs a message that's a number, it will be submitted to the server as a guess. The server will respond based on whether the number is higher or lower than the secret number stored on it (the number 333). The major challenge we faced involved getting guesses to properly send between the client and server, as well as just learning how to use web sockets.
