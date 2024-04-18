@@ -8,6 +8,7 @@
     </style>
     <script>
       let ws, msgs = [], ctx = null
+      var randomColor = Math.floor(Math.random()*16777215).toString(16);
       
       
 
@@ -29,14 +30,14 @@
         canvas.height = window.innerHeight
         canvas.addEventListener("mousemove", function (e) {
             ws.send( `${e.pageX}:${e.pageY}` )
-            ctx.fillStyle = 'yellow'
+            ctx.fillStyle = "#" + randomColor
             ctx.fillRect( e.pageX,e.pageY,50,50 )
         })
         ctx = canvas.getContext( '2d' )
 
         window.onmousedown = e => {
             ws.send( `${e.pageX}:${e.pageY}` )
-            ctx.fillStyle = 'yellow'
+            ctx.fillStyle = "#" + randomColor
             ctx.fillRect( e.pageX,e.pageY,50,50 )
         }
       }
