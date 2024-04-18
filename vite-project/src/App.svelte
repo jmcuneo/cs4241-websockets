@@ -1,3 +1,4 @@
+
 <script>
   let msgs = []
 
@@ -21,6 +22,12 @@
     msgs = msgs.concat([ 'me: ' + txt ])
   }
 </script>
+
+
+<main>
+  <h1>Messaging Application</h1>
+</main>
+
 
 <input type='text' on:change={send} />
 
