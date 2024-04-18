@@ -12,6 +12,7 @@ import { WebSocketServer } from 'ws'
 let width = 400;
 let height = 400;
 let minSize = 20;
+let maxSize = 200;
 let bouncers = [
   {
     size:50,
@@ -114,9 +115,23 @@ socketServer.on( 'connection', client => {
       bouncers.splice(index,1);
     }else if(data.type=="grow"){
       let index = data.index;
-      bouncers[index].x-=bouncers[index].size;
-      bouncers[index].y-=bouncers[index].size;
-      bouncers[index].size*=2;
+      if(bouncers[index].size<maxSize){
+        bouncers[index].x-=bouncers[index].size/2;
+        bouncers[index].y-=bouncers[index].size/2;
+        bouncers[index].size*=2;
+        if(bouncers[index].x + bouncers[index].size > width){
+          bouncers[index].x = width - bouncers[index].size;
+        }
+        if(bouncers[index].y + bouncers[index].size > height){
+          bouncers[index].y = height - bouncers[index].size;
+        }
+        if(bouncers[index].x < 0){
+          bouncers[index].x=0;
+        }
+        if(bouncers[index].y < 0){
+          bouncers[index].y=0;
+        }
+      }
     }
   });
 
