@@ -29,6 +29,6 @@ socketServer.on( 'connection', client => {
   clients.push( client )
 })
 
-server.listen( 3000 )
+server.listen( 5173 )
 
 ViteExpress.bind( app, server )
