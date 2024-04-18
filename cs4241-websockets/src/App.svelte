@@ -12,23 +12,33 @@
       // add message to end of msgs array,
       // re-assign to trigger UI update
       const message = await msg.data.text()
-      msgs = msgs.concat([ 'them: ' + message ])
+      flipFromOther(message)
     }
   }
 
-  const send = function() {
+  const send = function(i) {
     const txt = document.querySelector('input').value
-    ws.send( txt )
+    ws.send( i )
     msgs = msgs.concat([ 'me: ' + txt ])
   }
 
-  function flipTL(i) {
+  function flip(i) {
       if (TL[i] === "grey") {
           TL[i] = "blue"
       } else {
           TL[i] = "grey"
       }
+      ws.send( i )
   }
+
+  function flipFromOther(i) {
+      if (TL[i] === "grey") {
+          TL[i] = "red"
+      } else {
+          TL[i] = "grey"
+      }
+  }
+
 
 
 </script>
@@ -43,25 +53,25 @@
     }
 </style>
 
-<div>
-    <input type='text' on:change={send} />
-</div>
+<!--<div>-->
+<!--    <input type='text' on:change={send} />-->
+<!--</div>-->
 
 <div>
     <div class="row">
-        <div on:click={() => flipTL(0)} style="background-color: {TL[0]}; margin: 6px"></div>
-        <div on:click={() => flipTL(1)} style="background-color: {TL[1]}; margin: 6px"></div>
-        <div on:click={() => flipTL(2)} style="background-color: {TL[2]}; margin: 6px"></div>
+        <div on:click={() => flip(0)} style="background-color: {TL[0]}; margin: 6px"></div>
+        <div on:click={() => flip(1)} style="background-color: {TL[1]}; margin: 6px"></div>
+        <div on:click={() => flip(2)} style="background-color: {TL[2]}; margin: 6px"></div>
     </div>
     <div class="row">
-        <div on:click={() => flipTL(3)} style="background-color: {TL[3]}; margin: 6px"></div>
-        <div on:click={() => flipTL(4)} style="background-color: {TL[4]}; margin: 6px"></div>
-        <div on:click={() => flipTL(5)} style="background-color: {TL[5]}; margin: 6px"></div>
+        <div on:click={() => flip(3)} style="background-color: {TL[3]}; margin: 6px"></div>
+        <div on:click={() => flip(4)} style="background-color: {TL[4]}; margin: 6px"></div>
+        <div on:click={() => flip(5)} style="background-color: {TL[5]}; margin: 6px"></div>
     </div>
     <div class="row">
-        <div on:click={() => flipTL(6)} style="background-color: {TL[6]}; margin: 6px"></div>
-        <div on:click={() => flipTL(7)} style="background-color: {TL[7]}; margin: 6px"></div>
-        <div on:click={() => flipTL(8)} style="background-color: {TL[8]}; margin: 6px"></div>
+        <div on:click={() => flip(6)} style="background-color: {TL[6]}; margin: 6px"></div>
+        <div on:click={() => flip(7)} style="background-color: {TL[7]}; margin: 6px"></div>
+        <div on:click={() => flip(8)} style="background-color: {TL[8]}; margin: 6px"></div>
     </div>
 </div>
 
