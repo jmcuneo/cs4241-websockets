@@ -1,3 +1,4 @@
+
 <script>
   let msgs = []
   let counter = 1;
@@ -26,6 +27,12 @@
     msgs = msgs.concat([ 'me: ' + txt + ` ${timeString}`])
   }
 </script>
+
+
+<main>
+  <h1>Messaging Application</h1>
+</main>
+
 
 <input type='text' on:change={send} />
 
