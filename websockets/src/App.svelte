@@ -1,5 +1,6 @@
 <script>
   let msgs = []
+  let username = "Me";
       
   const ws = new WebSocket( 'ws://127.0.0.1:3000' )
 
@@ -10,19 +11,24 @@
     ws.onmessage = async msg => {
       // add message to end of msgs array,
       // re-assign to trigger UI update
-      const message = await msg.data.text()
-      msgs = msgs.concat([ 'them: ' + message ])
+      const message = JSON.parse(await msg.data.text());
+      msgs = msgs.concat([ message.name + ': ' + message.msg ])
     }
   }
 
   const send = function() {
-    const txt = document.querySelector('input').value
-    ws.send( txt )
-    msgs = msgs.concat([ 'me: ' + txt ])
+    const txt = document.querySelector('#message').value
+    ws.send(JSON.stringify({name: username, msg: txt}))
+    msgs = msgs.concat([ username + ': ' + txt ])
+  }
+
+  const changeUserName = function() {
+    username = document.querySelector('#user').value 
   }
 </script>
 
-<input type='text' on:change={send} />
+<input id="user" type="text" on:change={changeUserName} placeholder="enter your name"/>
+<input id= "message" type='text' on:change={send} />
 
 {#each msgs as msg }
   <h3>{msg}</h3>
