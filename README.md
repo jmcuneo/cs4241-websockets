@@ -2,16 +2,12 @@
 
 In this activity, you will work in groups to build a simple websockets application
 
-### Instructions
+### What we did
 
-1. Divide yourselves into groups of 3 - 5 students.
+We all worked on figuring out how to correct for the mouse offset, this was relatively simple we just subtracted 50 from the values around line 30 of App.svelte.
 
-2. Implement the basic websockets setup demo from the [sockets guide](https://github.com/jmcuneo/cs4241-guides/blob/master/using.sockets.md). Make sure that is up and running correctly before proceeding to the next step.
+Ivy B tried to get things to work in a droplet but that proved to be more complicated than originally thought.
 
-3. Using the demo as a starting point, create a simple networked web application. Make sure the application can handle everybody in your group. Be creative, but manage your time and expectations wisely so that you have a complete application to submit by the end of class.
+Ava C: Refreshing results in a color change for the client the other person remains red.
 
-4. Write up a README file that includes the names of all of your group members and a description of what the application does. Be sure to list anything a user might need to know before using your application. Also describe any challenges your group faced.
-
-5. Submit your final assignment by initiating a pull request against this repo.
-
-**NOTE:** The demo uses Svelte, but you are welcome to switch to a different UI framework if you prefer.
+Luca W: Wherever the mouse is, squares appear.
