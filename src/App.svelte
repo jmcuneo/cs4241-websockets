@@ -1,32 +1,37 @@
 <script>
-  let msgs = []
-      
-  const ws = new WebSocket( 'ws://127.0.0.1:5000' )
+  import Bouncer from "./Bouncer.svelte";
+  let bouncers = [];
+  let prom = new Promise(() => {});
+
+  const ws = new WebSocket("ws://127.0.0.1:5000");
 
   // when connection is established...
   ws.onopen = () => {
-    ws.send( 'a new client has connected.' )
+    // ws.send( 'a new client has connected.' )
 
-    ws.onmessage = async msg => {
-      // add message to end of msgs array,
-      // re-assign to trigger UI update
-      const message = await msg.data.text()
-      msgs = msgs.concat([ 'them: ' + message ])
-    }
+    ws.onmessage = async (msg) => {
+      prom = msg.data.json();
+      bouncers = await prom;
+    };
+  };
+
+  function click(index) {
+    const obj = { type: "split", index };
+    ws.send(JSON.stringify(obj));
   }
 
-  const send = function() {
-    const txt = document.querySelector('input').value
-    ws.send( txt )
-    msgs = msgs.concat([ 'me: ' + txt ])
-  }
-  window.onload=function(){
-
-  }
+  function rclick() {}
 </script>
 
-<input type='text' on:change={send} />
-
-{#each msgs as msg }
-  <h3>{msg}</h3>
-{/each}
+{#await prom then _}
+  {#each bouncers as bouncer, j}
+    <Bouncer
+      x={bouncer.x / 400}
+      y={bouncer.y / 400}
+      len={bouncer.size / 400}
+      color={bouncer.color}
+      on:click={() => click(j)}
+      on:contextmenu={() => rclick(j)}
+    ></Bouncer>
+  {/each}
+{/await}
