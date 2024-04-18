@@ -1,5 +1,6 @@
 <script>
   let msgs = []
+  let counter = 1;
 
   const ws = new WebSocket( 'ws://127.0.0.1:3000' )
 
@@ -10,15 +11,19 @@
     ws.onmessage = async msg => {
       // add message to end of msgs array,
       // re-assign to trigger UI update
+      const time = new Date();
+      const timeString = `${time.getHours()}:${time.getMinutes()}`;
       const message = await msg.data.text()
-      msgs = msgs.concat([ 'them: ' + message ])
+      msgs = msgs.concat([ 'them: ' + message + ` ${timeString}` ])
     }
   }
 
   const send = function() {
     const txt = document.querySelector('input').value
+    const time = new Date();
+    const timeString = `${time.getHours()}:${time.getMinutes()}`;
     ws.send( txt )
-    msgs = msgs.concat([ 'me: ' + txt ])
+    msgs = msgs.concat([ 'me: ' + txt + ` ${timeString}`])
   }
 </script>
 
