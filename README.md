@@ -7,5 +7,6 @@ Stephen Fanning
 We just updated the messaging app in the demo so that it displays the most recent
 messages and also has a name input so that the receiving side and see who sent the message
 
-Note: Be sure to enter a username first
+Note: Be sure to npm install first
+Also be sure to enter a username first
 
