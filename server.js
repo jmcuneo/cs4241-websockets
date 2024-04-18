@@ -27,7 +27,7 @@ let bouncers = [
     y:200,
     xVel:-1,
     yVel:1,
-    color:"#fefefe"
+    color:"#00ff00"
   }
 ];
 
@@ -68,6 +68,7 @@ socketServer.on( 'connection', client => {
   },50);
 
   client.on('message',(data)=>{
+    data = JSON.parse(data);
     if(data.type=="split"){
       let index = data.index;
       var oldBouncer = bouncers[index];
@@ -111,6 +112,10 @@ socketServer.on( 'connection', client => {
         Array.prototype.push.apply(bouncers,newBouncers);
       }
       bouncers.splice(index,1);
+    }else if(data.type=="grow"){
+      let index = data.index;
+      bouncers[index].size*=2;
+      bouncers[index].x
     }
   });
 
