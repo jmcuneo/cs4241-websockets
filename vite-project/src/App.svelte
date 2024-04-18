@@ -8,7 +8,7 @@
   // when connection is established...
   ws.onopen = () => {
     ws.send( ' has connected.' )
-    
+
     ws.onmessage = async msg => {
       // add message to end of msgs array,
       // re-assign to trigger UI update
@@ -24,7 +24,7 @@
     const time = new Date();
     const timeString = `${time.getHours()}:${time.getMinutes()}`;
     ws.send( txt )
-    msgs = msgs.concat([ 'me' + txt + ` ${timeString}`])
+    msgs = msgs.concat([ `${timeString} ` + 'me' + txt])
   }
 </script>
 
@@ -33,9 +33,9 @@
   <h1>Messaging Application</h1>
 </main>
 
-
-<input type='text' on:change={send} />
-
 {#each msgs as msg }
   <h3>{msg}</h3>
 {/each}
+
+<input type='text' on:change={send} />
+
