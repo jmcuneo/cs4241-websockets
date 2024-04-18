@@ -29,14 +29,14 @@
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
         canvas.addEventListener("mousemove", function (e) {
-            ws.send( `${e.pageX}:${e.pageY}` )
+            ws.send( `${e.pageX-50}:${e.pageY-50}` )
             ctx.fillStyle = "#" + randomColor
             ctx.fillRect( e.pageX,e.pageY,50,50 )
         })
         ctx = canvas.getContext( '2d' )
 
         window.onmousedown = e => {
-            ws.send( `${e.pageX}:${e.pageY}` )
+            ws.send( `${e.pageX-50}:${e.pageY-50}` )
             ctx.fillStyle = "#" + randomColor
             ctx.fillRect( e.pageX,e.pageY,50,50 )
         }
