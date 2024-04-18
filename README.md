@@ -1,17 +1,4 @@
-# ICE 04: Websockets
+Patrick Hunter
+Andres Negron
 
-In this activity, you will work in groups to build a simple websockets application
-
-### Instructions
-
-1. Divide yourselves into groups of 3 - 5 students.
-
-2. Implement the basic websockets setup demo from the [sockets guide](https://github.com/jmcuneo/cs4241-guides/blob/master/using.sockets.md). Make sure that is up and running correctly before proceeding to the next step.
-
-3. Using the demo as a starting point, create a simple networked web application. Make sure the application can handle everybody in your group. Be creative, but manage your time and expectations wisely so that you have a complete application to submit by the end of class.
-
-4. Write up a README file that includes the names of all of your group members and a description of what the application does. Be sure to list anything a user might need to know before using your application. Also describe any challenges your group faced.
-
-5. Submit your final assignment by initiating a pull request against this repo.
-
-**NOTE:** The demo uses Svelte, but you are welcome to switch to a different UI framework if you prefer.
+Functionally, this application is the same as the initial demo, but it utilizes a "send" button instead of running every text change. However, the main change is the conversion from Svelte to React, which posed a challenge because React's state system caused the page to refresh, which would constantly re-connect the websocket. The solution to this was to organize the project so that the websocket would remain persistent, while the page's content would update normally. In terms of additional features, if a hexcode is sent, it will change the page's background color to that.
