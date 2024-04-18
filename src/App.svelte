@@ -3,6 +3,9 @@
       
   const ws = new WebSocket( 'ws://127.0.0.1:3000' )
 
+  let ctr = 0;
+
+
   // when connection is established...
   ws.onopen = () => {
     ws.send( 'a new client has connected.' )
@@ -11,14 +14,16 @@
       // add message to end of msgs array,
       // re-assign to trigger UI update
       const message = await msg.data.text()
-      msgs = msgs.concat([ 'them: ' + message ])
+      ctr++
+      msgs = msgs.concat([ 'them: ' + message + ", message counter: "+ ctr])
     }
   }
 
   const send = function() {
     const txt = document.querySelector('input').value
     ws.send( txt )
-    msgs = msgs.concat([ 'me: ' + txt ])
+    ctr++
+    msgs = msgs.concat([ 'me: ' + txt + ", message counter: "+ ctr])
   }
 </script>
 
