@@ -5,7 +5,7 @@ Right click a square to make a big square (unless it's too big, then it will do 
 
 Group Members:
 
-Bashar Alqassar, Milo Jacobs
+Bashar Alqassar, Milo Jacobs, Nate Westfall
 
 
 
