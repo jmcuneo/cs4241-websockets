@@ -15,7 +15,7 @@
       const time = new Date();
       const timeString = `${time.getHours()}:${time.getMinutes()}`;
       const message = await msg.data.text()
-      msgs = msgs.concat([message + ` ${timeString}` ])
+      msgs = msgs.concat([`${timeString} ` + message ])
     }
   }
 
