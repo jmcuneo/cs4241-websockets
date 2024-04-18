@@ -34,6 +34,7 @@
         }else{
           const guessMsg = handleGuess(parseInt(txt))
           const guessLog = guess
+          ws.send(guessLog.toString())
           msgs = msgs.concat(['me: ' + guessLog],[ 'robot: ' +  guessMsg ])
         }
       }
