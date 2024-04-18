@@ -1,6 +1,6 @@
 <script>
   let msgs = []
-  let TL = ["grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey"];
+  let TL = ["", "", "", "", "", "", "", "", ""];
 
   const ws = new WebSocket( 'ws://127.0.0.1:3000' )
 
@@ -23,19 +23,19 @@
   }
 
   function flip(i) {
-      if (TL[i] === "grey") {
-          TL[i] = "blue"
+      if (TL[i] === "") {
+          TL[i] = "O"
       } else {
-          TL[i] = "grey"
+          TL[i] = ""
       }
       ws.send( i )
   }
 
   function flipFromOther(i) {
-      if (TL[i] === "grey") {
-          TL[i] = "red"
+      if (TL[i] === "") {
+          TL[i] = "X"
       } else {
-          TL[i] = "grey"
+          TL[i] = ""
       }
   }
 
@@ -45,6 +45,11 @@
 <style>
     .row {
         display: flex;
+    }
+
+    .cell {
+      border: white 2px solid;
+      font-size: 53px;
     }
 
     div {
@@ -58,21 +63,14 @@
 <!--</div>-->
 
 <div>
-    <div class="row">
-        <div on:click={() => flip(0)} style="background-color: {TL[0]}; margin: 6px"></div>
-        <div on:click={() => flip(1)} style="background-color: {TL[1]}; margin: 6px"></div>
-        <div on:click={() => flip(2)} style="background-color: {TL[2]}; margin: 6px"></div>
-    </div>
-    <div class="row">
-        <div on:click={() => flip(3)} style="background-color: {TL[3]}; margin: 6px"></div>
-        <div on:click={() => flip(4)} style="background-color: {TL[4]}; margin: 6px"></div>
-        <div on:click={() => flip(5)} style="background-color: {TL[5]}; margin: 6px"></div>
-    </div>
-    <div class="row">
-        <div on:click={() => flip(6)} style="background-color: {TL[6]}; margin: 6px"></div>
-        <div on:click={() => flip(7)} style="background-color: {TL[7]}; margin: 6px"></div>
-        <div on:click={() => flip(8)} style="background-color: {TL[8]}; margin: 6px"></div>
-    </div>
+    {#each [0, 1, 2] as row}
+        <div class="row">
+            {#each [0, 1, 2] as col}
+                {@const index = row * 3 + col}
+                <div class="cell" on:click={() => flip(index)} style="margin: 6px">{TL[index]}</div>
+            {/each}
+        </div>
+    {/each}
 </div>
 
 
