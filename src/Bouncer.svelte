@@ -8,10 +8,14 @@
         document.body.scrollWidth,
         document.body.scrollHeight,
     );
+
+    //$: x, console.log(x);
+    $: len, console.log(len);
 </script>
 
 <button
-    style="left:{x * envLen}; top:{y * envLen}; background_color:{color}"
+    style="left:{x * envLen}px; top:{y * envLen}px; width: {len *
+        envLen}px; height:{len * envLen}px; background-color:{color};"
     on:click
     on:contextmenu
 >
