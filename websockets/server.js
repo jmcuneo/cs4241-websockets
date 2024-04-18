@@ -14,7 +14,8 @@ const app = express()
 
 const server = http.createServer( app ),
       socketServer = new WebSocketServer({ server }),
-      clients = []
+      clients = [],
+      msgs = [];
 
 socketServer.on( 'connection', client => {
   console.log( 'connect!' )
@@ -22,7 +23,10 @@ socketServer.on( 'connection', client => {
   // when the server receives a message from this client...
   client.on( 'message', msg => {
 	  // send msg to every client EXCEPT the one who originally sent it
-    clients.forEach( c => { if( c !== client ) c.send( msg ) })
+      console.log(msg.toString());
+      if (msg.toString() !== "a new client has connected.")
+        msgs.push(JSON.parse(msg))
+    clients.forEach( c => { c.send( JSON.stringify(msgs)) })
   })
 
   // add client to client list
