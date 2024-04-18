@@ -10,8 +10,8 @@
     // ws.send( 'a new client has connected.' )
 
     ws.onmessage = async (msg) => {
-      prom = msg.data.json();
-      bouncers = await prom;
+      prom = msg.data.text();
+      bouncers = JSON.parse(await prom);
     };
   };
 
