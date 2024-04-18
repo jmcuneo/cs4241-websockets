@@ -5,20 +5,22 @@
 
   // when connection is established...
   ws.onopen = () => {
-    ws.send( 'a new client has connected.' )
-
+    ws.send( ' has connected.' )
+    
     ws.onmessage = async msg => {
       // add message to end of msgs array,
       // re-assign to trigger UI update
       const message = await msg.data.text()
-      msgs = msgs.concat([ 'them: ' + message ])
+      msgs = msgs.concat([ message ])
     }
   }
 
   const send = function() {
-    const txt = document.querySelector('input').value
+    const txt = ": " + document.querySelector('input').value
+
+    console.log(txt);
     ws.send( txt )
-    msgs = msgs.concat([ 'me: ' + txt ])
+    msgs = msgs.concat([ 'me' + txt ])
   }
 </script>
 

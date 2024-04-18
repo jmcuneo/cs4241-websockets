@@ -21,8 +21,17 @@ socketServer.on( 'connection', client => {
 
     // when the server receives a message from this client...
     client.on( 'message', msg => {
+        console.log("HELLO");
+        console.log(msg);
+        console.log('received: %s', msg);
         // send msg to every client EXCEPT the one who originally sent it
-        clients.forEach( c => { if( c !== client ) c.send( msg ) })
+        let userID="User "+(clients.indexOf(client)+1);
+        let userBuffer=Buffer.from(userID);
+        let msgBuffer=Buffer.concat([userBuffer,msg]);
+        clients.forEach( c => {
+
+         if( c !== client ) c.send( msgBuffer )
+         })
     })
 
     // add client to client list
