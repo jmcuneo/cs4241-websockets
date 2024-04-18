@@ -1,17 +1,6 @@
 # ICE 04: Websockets
+Group Members: Alexander B, Olivia P, Jayson C, Jack W, Joel H
 
-In this activity, you will work in groups to build a simple websockets application
+Project Description: Our application allows each client to choose a color from a color selector and place a square anywhere on their screen. Other clients can see the colored squares made by each other in real-time.
 
-### Instructions
-
-1. Divide yourselves into groups of 3 - 5 students.
-
-2. Implement the basic websockets setup demo from the [sockets guide](https://github.com/jmcuneo/cs4241-guides/blob/master/using.sockets.md). Make sure that is up and running correctly before proceeding to the next step.
-
-3. Using the demo as a starting point, create a simple networked web application. Make sure the application can handle everybody in your group. Be creative, but manage your time and expectations wisely so that you have a complete application to submit by the end of class.
-
-4. Write up a README file that includes the names of all of your group members and a description of what the application does. Be sure to list anything a user might need to know before using your application. Also describe any challenges your group faced.
-
-5. Submit your final assignment by initiating a pull request against this repo.
-
-**NOTE:** The demo uses Svelte, but you are welcome to switch to a different UI framework if you prefer.
+Challenges: Besides the original problem of the page constantly auto-reloading, we had some problems with the default color of the square being placed on the screen, but we hid that problem by defaulting the square color to the background color.
