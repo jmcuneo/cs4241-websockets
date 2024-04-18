@@ -9,6 +9,8 @@
     <script>
       let ws, msgs = [], ctx = null
       
+      
+
       window.onload = function() {
         ws = new WebSocket( 'ws://127.0.0.1:3000' )
 
@@ -25,12 +27,17 @@
         const canvas = document.querySelector('canvas')
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
+        canvas.addEventListener("mousemove", function (e) {
+            ws.send( `${e.pageX}:${e.pageY}` )
+            ctx.fillStyle = 'yellow'
+            ctx.fillRect( e.pageX,e.pageY,50,50 )
+        })
         ctx = canvas.getContext( '2d' )
 
-        window.onclick = e => {
-          ws.send( `${e.pageX}:${e.pageY}` )
-          ctx.fillStyle = 'yellow'
-          ctx.fillRect( e.pageX,e.pageY,50,50 )
+        window.onmousedown = e => {
+            ws.send( `${e.pageX}:${e.pageY}` )
+            ctx.fillStyle = 'yellow'
+            ctx.fillRect( e.pageX,e.pageY,50,50 )
         }
       }
     </script>
