@@ -13,12 +13,16 @@
     };
   };
 
-  function click(index) {
+  function click(_, index) {
     const obj = { type: "split", index };
     ws.send(JSON.stringify(obj));
   }
 
-  function rclick() {}
+  function rclick(e, index) {
+    e.preventDefault();
+    const obj = { type: "grow", index };
+    ws.send(JSON.stringify(obj));
+  }
 </script>
 
 {#each bouncers as bouncer, j}
@@ -27,7 +31,7 @@
     y={bouncer.y / 400}
     len={bouncer.size / 400}
     color={bouncer.color}
-    on:click={() => click(j)}
-    on:contextmenu={() => rclick(j)}
+    on:click={(e) => click(e, j)}
+    on:contextmenu={(e) => rclick(e, j)}
   ></Bouncer>
 {/each}
